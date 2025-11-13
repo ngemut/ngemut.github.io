@@ -1,70 +1,607 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ngemut Permen</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ngemil Mart - Cemilan & Bahan Pokok</title>
+  <meta name="description" content="Marketplace cemilan Gen Z & bahan pokok: risoles, keripik, beras, minyak, gula. Order via WA!">
+  
+  <!-- OG TAGS UNTUK WA PREVIEW -->
+  <meta property="og:title" content="Ngemil Mart - Cemilan & Bahan Pokok">
+  <meta property="og:description" content="Risoles lumer, keripik pedas, beras premium, minyak goreng. Order via WA!">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ngemil.github.io/">
+  <meta property="og:image" content="https://ngemil.github.io/preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- FONT & ICON -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #ff6b35;
+      --secondary: #f7b733;
+      --accent: #2ecc71;
+      --dark: #2c3e50;
+      --light: #f8f9fa;
+      --gray: #95a5a6;
+      --shadow: 0 8px 25px rgba(255,107,53,0.15);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8em;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .search-bar {
+      flex: 1;
+      max-width: 500px;
+      margin: 0 20px;
+      position: relative;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 12px 45px 12px 15px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .search-bar button {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .cart {
+      position: relative;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #e74c3c;
+      color: white;
+      font-size: 0.7em;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    /* HERO */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1606890658317-7ff038f79e73?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 15px;
+      text-shadow: 0 3px 10px rgba(0,0,0,0.5);
+    }
+    .hero p {
+      font-size: 1.3em;
+      margin-bottom: 25px;
+      opacity: 0.9;
+    }
+
+    /* KATEGORI */
+    .categories {
+      padding: 50px 0;
+      background: white;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.2em;
+      margin-bottom: 40px;
+      color: var(--primary);
+    }
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+    }
+    .cat-card {
+      text-align: center;
+      padding: 20px;
+      border-radius: 15px;
+      background: var(--light);
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .cat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(255,107,53,0.2);
+    }
+    .cat-icon {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+    .cat-name {
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    /* PRODUK */
+    .products {
+      padding: 50px 0;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    .product-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+    }
+    .product-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .product-body {
+      padding: 15px;
+    }
+    .product-name {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+    .product-price {
+      font-size: 1.3em;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .add-to-cart {
+      width: 100%;
+      padding: 10px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .add-to-cart:hover {
+      background: #e55a2b;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 50px 0 20px;
+      margin-top: 50px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    .footer-col h3 {
+      margin-bottom: 15px;
+      color: var(--secondary);
+    }
+    .footer-col a {
+      color: #bdc3c7;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .footer-col a:hover {
+      color: white;
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #34495e;
+      color: #95a5a6;
+      font-size: 0.9em;
+    }
+
+    /* KERANJANG SIDEBAR */
+    .cart-sidebar {
+      position: fixed;
+      right: -400px;
+      top: 0;
+      width: 380px;
+      height: 100%;
+      background: white;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      transition: 0.4s;
+      z-index: 1000;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .cart-sidebar.open {
+      right: 0;
+    }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    .cart-close {
+      font-size: 1.5em;
+      cursor: pointer;
+      color: var(--gray);
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .cart-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 15px;
+    }
+    .cart-item-info {
+      flex: 1;
+    }
+    .cart-item-name {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .cart-item-price {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .quantity {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 5px;
+    }
+    .quantity button {
+      width: 25px;
+      height: 25px;
+      border: 1px solid #ddd;
+      background: white;
+      cursor: pointer;
+      border-radius: 50%;
+      font-weight: bold;
+    }
+    .remove-item {
+      color: #e74c3c;
+      cursor: pointer;
+      font-size: 1.2em;
+    }
+    .cart-total {
+      font-size: 1.3em;
+      font-weight: 700;
+      text-align: right;
+      margin: 20px 0;
+      color: var(--primary);
+    }
+    .checkout-btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .header-content { flex-direction: column; gap: 15px; }
+      .search-bar { margin: 0; max-width: 100%; }
+      .hero h1 { font-size: 2.2em; }
+      .cart-sidebar { width: 100%; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="logo">✔ Ngemut Permen</div>
-        <nav>
-            <a href="https://ngemut.github.io/25-50.html">Permen Segar</a>
-            <a href="https://puncaklembah.github.io">Tentang Pembuat Permen</a>
-            <a href="#reseps">Resep Permen</a>
-            <a href="#rutinitas">Rutinitas Harian</a>
-        </nav>
-        <button class="chat-btn" onclick="alert('Fitur obrolan permen belum aktif!')">Obrolan Permen</button>
-    </header>
-    <main>
-        <h1>Membuat Permen dengan Peracikan Kaizen</h1>
-        <p>Ketika keunggulan teknik bertemu dengan keterampilan artistik. Saya mendekati pembuatan permen dengan perhatian dan ketelitian yang sama terhadap detail yang digunakan untuk mengemut permen yang sempurna.</p>
-        <div class="poem" style="text-align: center; margin: 2rem auto; max-width: 600px; font-style: italic;">
-           <h3>Wis Ngemut</h3>
-            <p>Di pasar yang luas, nasib dan keberuntungan berayun,<br>
-               Tangan yang tenang menentukan jalannya.<br>
-               Setiap hari benih peracikan kebijaksanaan ditabur,<br>
-               Harta tumbuh dalam keheningan, angka demi angka naik.<br>
 
-               Tanpa tergesah-gesah, tanpa serakah, pikiran menjadi jernih,<br>
-               Langkah demi langkah, tujuan semakin mendekat.<br>
-               Tiga koma lima tiga persen, pelan namun pasti,<br>
-               Melalui waktu dan perhatian, kesuksesan akan terus berlanjut.<br>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">Ngemil Mart</div>
+        <div class="search-bar">
+          <input type="text" id="search" placeholder="Cari risoles, beras, minyak...">
+          <button onclick="search()"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="cart" onclick="toggleCart()">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count" id="cart-count">0</span>
+        </div>
+      </div>
+    </div>
+  </header>
 
-               Dari awal yang kecil, mimpi terbang tinggi,<br>
-               Kebijaksanaan membimbing kita melewati siang dan malam.<br>
-               Keuntungan yang baik bukan hanya emas semata,<br>
-               Melainkan visi yang terwujud dengan segenap cipta, rasa dan karsa.</p>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Ngemil Mart</h1>
+      <p>Cemilan Gen Z & Bahan Pokok — Satu Tempat!</p>
+    </div>
+  </section>
+
+  <!-- KATEGORI -->
+  <section class="categories">
+    <div class="container">
+      <h2 class="section-title">Kategori</h2>
+      <div class="cat-grid">
+        <div class="cat-card" onclick="filter('cemilan')">
+          <div class="cat-icon">Snack</div>
+          <div class="cat-name">Cemilan</div>
         </div>
-        <div class="tridaya-info" style="text-align: center; margin: 1rem auto; max-width: 600px; font-size: clamp(0.9rem, 2vw, 1rem);">
-  <p><strong>Tridaya</strong>: Filosofi Jawa yang menggabungkan <em>Cipta</em> (pikiran jernih), <em>Rasa</em> (perasaan empati), dan <em>Karsa</em> (kehendak kuat) untuk mencapai keuntungan yang bijak dan harmonis.</p>
-</div>
-        <div class="tridaya-info" style="text-align: center; margin: 1rem auto; max-width: 600px; font-size: clamp(0.9rem, 2vw, 1rem);">
-  <p><strong>Kemantapan</strong>: Berhentilah ragu-ragu pada hal-hal yang mungkin salah, dan mulailah bersemangat pada hal-hal yang mungkin berjalan dengan baik.</p>
-</div>
-        <pre><code>
-const candyQuality = 'premium';
-const codeQuality = 'luar biasa';
-brewPerfectSolution(kualitasPermen, kualitasKode);
-        </code></pre>
-        <div class="buttons">
-            <button class="recipe-btn" onclick="showRecipes()">Lihat Resep Saya</button>
-            <button class="join-btn" onclick="alert('Ayo ngemut bersama!')">Mari Kita Ngemut Bersama</button>
+        <div class="cat-card" onclick="filter('beras')">
+          <div class="cat-icon">Rice Bowl</div>
+          <div class="cat-name">Beras</div>
         </div>
-        <div id="recipe-list" class="recipe-list"></div>
-        <div id="add-recipe" class="add-recipe" style="display: none;">
-            <input type="text" id="recipe-name" placeholder="Nama Resep" required>
-            <input type="text" id="recipe-ingredients" placeholder="Bahan (pisah dengan koma, misal: Gula 100g, Sirup 50ml)" required>
-            <input type="text" id="recipe-instructions" placeholder="Instruksi" required>
-            <button onclick="addRecipe()">Tambah Resep</button>
+        <div class="cat-card" onclick="filter('minyak')">
+          <div class="cat-icon">Water Drop</div>
+          <div class="cat-name">Minyak</div>
         </div>
-        <button class="reset-btn" onclick="resetRecipes()">Reset Resep</button>
-    </main>
-    <footer>
-        <img src="https://via.placeholder.com/300x100" alt="Candy Background">
-        <p>© 2025 Ngemut Permen - Dibuat pada 7 November 2025, 16:00 WIB</p>
-    </footer>
-    <script src="script.js"></script>
+        <div class="cat-card" onclick="filter('gula')">
+          <div class="cat-icon">Cookie</div>
+          <div class="cat-name">Gula & Tepung</div>
+        </div>
+        <div class="cat-card" onclick="filter('lainnya')">
+          <div class="cat-icon">Box</div>
+          <div class="cat-name">Lainnya</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUK -->
+  <section class="products">
+    <div class="container">
+      <h2 class="section-title">Produk Unggulan</h2>
+      <div class="product-grid" id="product-list">
+        <!-- Produk di-load via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- KERANJANG SIDEBAR -->
+  <div class="cart-sidebar" id="cart-sidebar">
+    <div class   <div class="cart-header">
+      <h3>Keranjang (<span id="cart-total-items">0</span>)</h3>
+      <i class="fas fa-times cart-close" onclick="toggleCart()"></i>
+    </div>
+    <div id="cart-items"></div>
+    <div class="cart-total">Total: Rp <span id="cart-total">0</span></div>
+    <button class="checkout-btn" onclick="checkout()">Checkout via WA</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Ngemil Mart</h3>
+          <p>Marketplace cemilan & bahan pokok untuk Gen Z.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Kategori</h3>
+          <a href="#">Cemilan</a>
+          <a href="#">Beras</a>
+          <a href="#">Minyak</a>
+          <a href="#">Gula & Tepung</a>
+        </div>
+        <div class="footer-col">
+          <h3>Kontak</h3>
+          <a href="#">WA: 6281234567890</a>
+          <a href="#">Instagram</a>
+          <a href="#">TikTok</a>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2025 Ngemil Mart. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    // DATA PRODUK
+    const products = [
+      { id: 1, name: "Risoles Mozzarella Lumer", price: 15000, category: "cemilan", img: "https://images.unsplash.com/photo-1606890658317-7ff038f79e73?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+      { id: 2, name: "Keripik Singkong Balado", price: 12000, category: "cemilan", img: "https://images.unsplash.com/photo-1624353365286-3b689189b3f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+      { id: 3, name: "Beras Ramos 5kg", price: 75000, category: "beras", img: "https://images.unsplash.com/photo-1586201375761-83865001bdd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+      { id: 4, name: "Minyak Goreng 2L", price: 35000, category: "minyak", img: "https://images.unsplash.com/photo-1621939514643-280e5c90473c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+      { id: 5, name: "Gula Pasir 1kg", price: 15000, category: "gula", img: "https://images.unsplash.com/photo-1626645734936-d81f1b4d0c80?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+      { id: 6, name: "Tepung Terigu 1kg", price: 12000, category: "gula", img: "https://images.unsplash.com/photo-1624353365286-3b689189b3f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+      { id: 7, name: "Telur Ayam 10 butir", price: 28000, category: "lainnya", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+      { id: 8, name: "Keripik Tempe", price: 10000, category: "cemilan", img: "https://images.unsplash.com/photo-1621939514643-280e5c90473c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" }
+    ];
+
+    let cart = [];
+    const waNumber = "6281234567890"; // GANTI NOMOR ANDA
+
+    // Render produk
+    function renderProducts(filter = '') {
+      const list = document.getElementById('product-list');
+      let filtered = filter ? products.filter(p => p.category === filter) : products;
+      list.innerHTML = filtered.map(p => `
+        <div class="product-card">
+          <img src="${p.img}" alt="${p.name}" class="product-img">
+          <div class="product-body">
+            <div class="product-name">${p.name}</div>
+            <div class="product-price">Rp ${p.price.toLocaleString()}</div>
+            <button class="add-to-cart" onclick="addToCart(${p.id})">Tambah</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Tambah ke keranjang
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      const existing = cart.find(item => item.id === id);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...product, qty: 1 });
+      }
+      updateCart();
+    }
+
+    // Update keranjang
+    function updateCart() {
+      const count = document.getElementById('cart-count');
+      const items = document.getElementById('cart-items');
+      const totalItems = document.getElementById('cart-total-items');
+      const total = document.getElementById('cart-total');
+      
+      const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      
+      count.textContent = totalQty;
+      totalItems.textContent = totalQty;
+      total.textContent = totalPrice.toLocaleString();
+
+      items.innerHTML = cart.map(item => `
+        <div class="cart-item">
+          <img src="${item.img}" alt="${item.name}">
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">Rp ${(item.price * item.qty).toLocaleString()}</div>
+            <div class="quantity">
+              <button onclick="changeQty(${item.id}, -1)">-</button>
+              <span>${item.qty}</span>
+              <button onclick="changeQty(${item.id}, 1)">+</button>
+            </div>
+          </div>
+          <i class="fas fa-trash remove-item" onclick="removeFromCart(${item.id})"></i>
+        </div>
+      `).join('') || '<p style="text-align:center;color:#999;">Keranjang kosong</p>';
+    }
+
+    // Ubah jumlah
+    function changeQty(id, change) {
+      const item = cart.find(i => i.id === id);
+      if (item) {
+        item.qty = Math.max(1, item.qty + change);
+        if (item.qty === 0) removeFromCart(id);
+        updateCart();
+      }
+    }
+
+    // Hapus item
+    function removeFromCart(id) {
+      cart = cart.filter(i => i.id !== id);
+      updateCart();
+    }
+
+    // Toggle keranjang
+    function toggleCart() {
+      document.getElementById('cart-sidebar').classList.toggle('open');
+    }
+
+    // Checkout
+    function checkout() {
+      if (cart.length === 0) return alert('Keranjang kosong!');
+      let message = "Halo! Saya mau pesan:\n\n";
+      cart.forEach(item => {
+        message += `• ${item.name} x${item.qty} = Rp ${(item.price * item.qty).toLocaleString()}\n`;
+      });
+      message += `\n*Total: Rp ${cart.reduce((s,i)=>s+(i.price*i.qty),0).toLocaleString()}*`;
+      const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+
+    // Filter kategori
+    function filter(cat) {
+      renderProducts(cat);
+    }
+
+    // Cari
+    function search() {
+      const query = document.getElementById('search').value.toLowerCase();
+      const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+      const list = document.getElementById('product-list');
+      list.innerHTML = filtered.map(p => `
+        <div class="product-card">
+          <img src="${p.img}" alt="${p.name}" class="product-img">
+          <div class="product-body">
+            <div class="product-name">${p.name}</div>
+            <div class="product-price">Rp ${p.price.toLocaleString()}</div>
+            <button class="add-to-cart" onclick="addToCart(${p.id})">Tambah</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Init
+    window.onload = () => {
+      renderProducts();
+      updateCart();
+    };
+  </script>
 </body>
 </html>
