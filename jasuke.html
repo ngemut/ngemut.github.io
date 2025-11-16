@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jasuke Jombang - Jagung Susu Keju Viral!</title>
+  <meta name="description" content="Jasuke kekinian: jagung manis, susu kental manis, keju parut lumer! Viral di TikTok. Order WA: 08999587888">
+  
+  <!-- OG TAGS UNTUK SOSMED & WA -->
+  <meta property="og:title" content="Jasuke Jombang - Jagung Susu Keju Paling Hits!">
+  <meta property="og:description" content="Jasuke premium: jagung manis pulen + susu + keju lumer! Harga mulai Rp 10K. Order via WA 08999587888">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ngemil.github.io/jasuke">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1623341214825-9db3f4a6645e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- FONT & ICON -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --yellow: #f1c40f;
+      --cream: #f9e79f;
+      --orange: #e67e22;
+      --cheese: #f39c12;
+      --bg: #fffde6;
+      --card: #ffffff;
+      --shadow: 0 10px 30px rgba(241, 196, 15, 0.2);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, var(--yellow), var(--cheese));
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="3" fill="rgba(255,255,255,0.15)"/><circle cx="80" cy="30" r="2" fill="rgba(255,255,255,0.15)"/><circle cx="50" cy="70" r="4" fill="rgba(255,255,255,0.15)"/></svg>');
+      animation: float 20s infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    .logo {
+      font-family: 'Pacifico', cursive;
+      font-size: 3em;
+      margin-bottom: 10px;
+      text-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    .tagline {
+      font-size: 1.3em;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.8em;
+      color: var(--orange);
+      margin-bottom: 15px;
+    }
+    .hero p {
+      font-size: 1.2em;
+      color: #555;
+      margin-bottom: 30px;
+    }
+    .cta {
+      display: inline-block;
+      background: var(--cheese);
+      color: white;
+      padding: 15px 35px;
+      border-radius: 50px;
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 1.2em;
+      box-shadow: 0 5px 15px rgba(243, 156, 18, 0.4);
+      transition: 0.3s;
+    }
+    .cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(243, 156, 18, 0.5);
+    }
+
+    /* PRODUK */
+    .products {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.2em;
+      color: var(--orange);
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      width: 80px;
+      height: 4px;
+      background: var(--yellow);
+      display: block;
+      margin: 10px auto;
+      border-radius: 2px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+      text-align: center;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(241, 196, 15, 0.3);
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 20px;
+    }
+    .card-title {
+      font-size: 1.4em;
+      color: var(--orange);
+      margin: 10px 0;
+    }
+    .price {
+      font-size: 1.5em;
+      font-weight: 800;
+      color: #27ae60;
+      margin: 10px 0;
+    }
+    .flavors {
+      font-size: 0.9em;
+      color: #777;
+      margin: 8px 0;
+    }
+    .order-btn {
+      background: var(--cheese);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 15px;
+      transition: 0.3s;
+    }
+    .order-btn:hover {
+      background: #e67e22;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--orange);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+    .social a {
+      color: white;
+      font-size: 1.5em;
+      margin: 0 10px;
+      transition: 0.3s;
+    }
+    .social a:hover {
+      transform: scale(1.2);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .logo { font-size: 2.2em; }
+      .hero h1 { font-size: 2.2em; }
+      .section-title { font-size: 1.8em; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">Jasuke Jombang</div>
+    <div class="tagline">Viral di TikTok • Aesthetic • Lumer Banget!</div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Jasuke Kekinian Paling Nge-Hits!</h1>
+    <p>Jagung manis pulen + susu kental manis + keju cheddar lumer = **CINTA PERTAMA DI LIDAH!**</p>
+    <a href="#produk" class="cta">Pesan via WA 08999587888</a>
+  </section>
+
+  <!-- PRODUK -->
+  <section class="products" id="produk">
+    <h2 class="section-title">Varian Jasuke Andalan</h2>
+    <div class="grid">
+
+      <!-- JASUKE 1 -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1623341214825-9db3f4a6645e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Jasuke Original">
+        <div class="card-body">
+          <div class="card-title">Jasuke Original</div>
+          <div class="price">Rp 10.000</div>
+          <div class="flavors">Jagung manis + SKM + keju parut • Klasik tapi juara!</div>
+          <button class="order-btn" onclick="order('Jasuke Original', '10000')">Pesan via WA</button>
+        </div>
+      </div>
+
+      <!-- JASUKE 2 -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1598515214211-8e1b9052a79f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Jasuke Mozzarella">
+        <div class="card-body">
+          <div class="card-title">Jasuke Mozzarella</div>
+          <div class="price">Rp 15.000</div>
+          <div class="flavors">Keju mozzarella lumer • Aesthetic banget buat story!</div>
+          <button class="order-btn" onclick="order('Jasuke Mozzarella', '15000')">Pesan via WA</button>
+        </div>
+      </div>
+
+      <!-- JASUKE 3 -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1562077839-3e6a41a3e9c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Jasuke Cokelat">
+        <div class="card-body">
+          <div class="card-title">Jasuke Cokelat</div>
+          <div class="price">Rp 13.000</div>
+          <div class="flavors">Tambah cokelat leleh • Manisnya ngena di hati</div>
+          <button class="order-btn" onclick="order('Jasuke Cokelat', '13000')">Pesan via WA</button>
+        </div>
+      </div>
+
+      <!-- JASUKE 4 -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1597362912632-0e0f0e11ff9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Jasuke Jumbo">
+        <div class="card-body">
+          <div class="card-title">Jasuke Jumbo</div>
+          <div class="price">Rp 20.000</div>
+          <div class="flavors">Porsi besar • Keju 2x • Untuk sharing!</div>
+          <button class="order-btn" onclick="order('Jasuke Jumbo', '20000')">Pesan via WA</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>Jasuke Jombang</strong> • Jajanan Viral Gen Z • Setiap Hari Fresh!</p>
+    <div class="social">
+      <a href="https://wa.me/628999587888" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://instagram.com/jasukejombang" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://tiktok.com/@jasukejombang" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p>&copy; 2025 Jasuke Jombang. All rights reserved.</p>
+  </footer>
+
+  <!-- SCRIPT ORDER VIA WA -->
+  <script>
+    function order(nama, harga) {
+      const wa = "628999587888"; // 08999587888
+      const pesan = `Halo Jasuke Jombang! Saya mau pesan:\n*Menu*: ${nama}\n*Harga*: Rp ${harga}\n\nLokasi: Jombang & sekitarnya\nTerima kasih! 💛`;
+      const url = `https://wa.me/${wa}?text=${encodeURIComponent(pesan)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+
+</body>
+</html>
