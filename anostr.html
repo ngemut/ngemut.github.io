@@ -1,34 +1,65 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="theme-color" content="#000000"/>
-    
-    
-    
-    
-    <meta property="primal:git-commit-id" content="c304dd989be0f10828c39ea48943820b44e103a8"/>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galeri Video Premium</title>
+  <meta name="description" content="Video review kasur premium" />
 
-    <link href="/public/fonts.css" rel="stylesheet"/>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    video { max-width: 100%; height: auto; }
+    .video-container { position: relative; padding-bottom: 56.25%; /* 16:9 */ height: 0; overflow: hidden; }
+    .video-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+  </style>
+</head>
+<body class="bg-black text-white">
 
-    <link rel="shortcut icon" type="image/ico" href="/assets/favicon-51789dff.ico"/>
-    <title>America First Clips</title>
-    <script type="module" crossorigin="" src="/assets/index-6ced3a9c.js"> </script>
-    <link rel="stylesheet" href="/assets/index-0a85cce3.css"/>
-  <meta property="og:title" content="America First Clips"/><meta property="og:description" content="Larry Ellison wants to feed you Ai generated propaganda disguised as entertainment? &#10;&#10;Sounds like something a Jew would do"/><meta property="og:image" content="https://primal.net/media-cache?u=https%3A%2F%2Fr2.primal.net%2Fcache%2F7%2Fb9%2F91%2F7b9911fa85d3d361ed1e01818a2237e881f7ccdc524f0e4e550a042a2c1da593.jpg"/><meta property="og:url" content="https://primal.net/e/nevent1qqsw02l5d7whv0q4n9q7vxfxevhptp52sk4yhytsncxesacq96huqacksfdqw"/><meta name="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:image" content="https://r2.primal.net/cache/7/b9/91/7b9911fa85d3d361ed1e01818a2237e881f7ccdc524f0e4e550a042a2c1da593.jpg"/></head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"/>
+  <!-- HEADER -->
+  <header class="text-center py-12 bg-gradient-to-b from-purple-900 to-black">
+    <h1 class="text-5xl font-bold mb-4">Galeri Video Premium</h1>
+    <p class="text-xl opacity-80">Review & Demo Kasur Mewah</p>
+  </header>
 
-    <script><![CDATA[
-      var style = document.querySelectorAll('style');
+  <!-- GALERI VIDEO -->
+  <section class="max-w-5xl mx-auto px-4 py-16 grid grid-cols-1 gap-12">
 
-      for (var q=0; q<style.length; ++q) {
-        style[q].innerHTML += " ";
-      }
-    ]]></script>
-    
-  </body>
+    <!-- Video 1 (link kamu) -->
+    <div class="bg-gray-900 rounded-3xl overflow-hidden shadow-2xl">
+      <div class="video-container">
+        <video controls autoplay loop muted playsinline class="rounded-3xl">
+          <source src="https://r2a.primal.net/uploads2/f/d8/43/fd843aa23c93b1c4e889bca7d40b407336fa5c5ace27c1f37fc137aff07c357f.mp4" type="video/mp4">
+          Browser kamu tidak support video.
+        </video>
+      </div>
+      <div class="p-6 text-center">
+        <h3 class="text-2xl font-bold mb-2">Demo Kasur Spring Bed Full Set</h3>
+        <p class="opacity-70">Nyaman banget buat santai malam-malam 😏</p>
+      </div>
+    </div>
+
+    <!-- Tambah video lain di sini kalau mau -->
+    <!-- Contoh video ke-2 (copy blok di atas, ganti src dan judul) -->
+    <!--
+    <div class="bg-gray-900 rounded-3xl overflow-hidden shadow-2xl">
+      <div class="video-container">
+        <video controls autoplay loop muted playsinline class="rounded-3xl">
+          <source src="LINK_VIDEO_LAIN.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="p-6 text-center">
+        <h3 class="text-2xl font-bold mb-2">Judul Video Lain</h3>
+      </div>
+    </div>
+    -->
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="text-center py-8 text-gray-500">
+    <p>© 2025 Galeri Video Premium • All rights reserved</p>
+  </footer>
+
+</body>
 </html>
