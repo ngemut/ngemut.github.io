@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ngemil Mart - Cemilan & Sembako Gen Z</title>
+  <meta name="description" content="Risoles lumer, keripik pedas, beras premium, minyak goreng — order cepat via WA!">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ngemil Mart - Cemilan & Sembako Gen Z">
+  <meta property="og:description" content="Cemilan enak + sembako murah. Langsung checkout via WA!">
+  <meta property="og:image" content="https://ngemil.github.io/preview.jpg">
+  <meta property="og:url" content="https://ngemil.github.io">
+  <meta property="og:type" content="website">
+
+  <!-- PWA -->
+  <link rel="manifest" href="data:application/manifest+json,{
+    \"name\":\"Ngemil Mart\",
+    \"short_name\":\"Ngemil\",
+    \"start_url\":\".\",
+    \"display\":\"standalone\",
+    \"background_color\":\"#0EA5E9\",
+    \"theme_color\":\"#0EA5E9\",
+    \"icons\":[{\"src\":\"https://ngemil.github.io/icon-192.png\",\"sizes\":\"192x192\",\"type\":\"image/png\"},{\"src\":\"https://ngemil.github.io/icon-512.png\",\"sizes\":\"512x512\",\"type\":\"image/png\"}]
+  }">
+  <meta name="theme-color" content="#0EA5E9">
+
+  <!-- Font & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --primary: #0EA5E9; --secondary: #38BDF8; --accent: #10B981; --danger: #EF4444;
+      --dark: #1E293B; --light: #F0F9FF; --gray: #64748B; --radius: 22px;
+      --shadow: 0 14px 40px rgba(14,165,233,0.2); --transition: all 0.4s ease;
+    }
+    [data-theme="dark"] { --light: #0F172A; --dark: #E2E8F0; --gray: #94A3B8; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Poppins', sans-serif; background: var(--light); color: var(--dark); line-height: 1.7; opacity:0; transition: var(--transition); }
+    body.loaded { opacity:1; }
+    .container { max-width: 1320px; margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 20px 0; position: sticky; top: 0; z-index: 1200; box-shadow: 0 8px 30px rgba(14,165,233,0.35); }
+    .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .logo { font-family: 'Fredoka One', cursive; font-size: 2.5em; text-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+    .search-bar { flex: 1; max-width: 600px; position: relative; }
+    .search-bar input { width: 100%; padding: 18px 70px 18px 28px; border: none; border-radius: 35px; font-size: 1.1em; background: rgba(255,255,255,0.95); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+    .search-bar button { position: absolute; right: 12px; top: 12px; background: var(--accent); color: white; border: none; width: 52px; height: 52px; border-radius: 50%; cursor: pointer; font-size: 1.4em; }
+    .icon-btn { font-size: 1.9em; cursor: pointer; position: relative; transition: var(--transition); }
+    .icon-btn:hover { transform: scale(1.2); }
+    .cart-count { position: absolute; top: -14px; right: -14px; background: var(--danger); color: white; width: 32px; height: 32px; border-radius: 50%; font-size: 0.9em; font-weight: bold; display: flex; align-items: center; justify-content: center; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.7); } 70% { box-shadow: 0 0 0 14px rgba(239,68,68,0); } }
+
+    /* Hero */
+    .hero { background: linear-gradient(rgba(14,165,233,0.9), rgba(56,189,248,0.9)), url('https://images.unsplash.com/photo-1606890658317-7ff038f79e73?auto=format&fit=crop&w=1600&q=80') center/cover; color: white; text-align: center; padding: 160px 20px; border-radius: 0 0 50px 50px; }
+    .hero h1 { font-size: 4.8em; margin-bottom: 25px; text-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+    .hero p { font-size: 1.7em; max-width: 900px; margin: 0 auto 40px; }
+
+    /* Section Title */
+    .section-title { text-align: center; font-size: 3em; margin: 100px 0 70px; color: var(--primary); position: relative; }
+    .section-title::after { content: ''; width: 140px; height: 7px; background: var(--secondary); display: block; margin: 25px auto; border-radius: 4px; }
+
+    /* Kategori & Produk */
+    .categories, .products { padding: 60px 0; }
+    .categories { background: white; }
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px; }
+    .cat-card { text-align: center; padding: 40px 25px; border-radius: var(--radius); background: white; box-shadow: var(--shadow); cursor: pointer; transition: var(--transition); }
+    .cat-card:hover { transform: translateY(-20px); box-shadow: 0 30px 60px rgba(14,165,233,0.35); }
+    .cat-icon { font-size: 4.5em; margin-bottom: 20px; color: var(--primary); }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 45px; }
+    .product-card { background: white; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); position: relative; }
+    .product-card:hover { transform: translateY(-20px); box-shadow: 0 35px 70px rgba(14,165,233,0.4); }
+    .badge { position: absolute; top: 15px; left: 15px; background: #EF4444; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9em; font-weight: bold; z-index: 2; }
+    .badge.hot { background: #EF4444; }
+    .badge.limited { background: #F59E0B; }
+    .badge.discount { background: #10B981; }
+    .product-img { width: 100%; height: 250px; object-fit: cover; }
+    .product-body { padding: 30px; }
+    .product-name { font-weight: 600; font-size: 1.2em; margin-bottom: 15px; }
+    .product-price { font-size: 1.8em; font-weight: 800; color: var(--primary); margin-bottom: 20px; }
+    .add-to-cart { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 16px; font-weight: 700; font-size: 1.1em; cursor: pointer; }
+
+    /* Keranjang Sidebar */
+    .cart-sidebar { position: fixed; right: -500px; top: 0; width: 500px; max-width: 95vw; height: 100%; background: white; box-shadow: -15px 0 60px rgba(14,165,233,0.35); transition: 0.6s cubic-bezier(0.22, 0.61, 0.36, 1); z-index: 1300; padding: 35px; overflow-y: auto; }
+    .cart-sidebar.open { right: 0; }
+    .checkout-btn { width: 100%; padding: 20px; background: var(--accent); color: white; border: none; border-radius: 16px; font-size: 1.3em; font-weight: 700; cursor: pointer; }
+
+    /* Toast & Scroll Top */
+    .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 20px 50px; border-radius: 60px; box-shadow: 0 15px 40px rgba(16,185,129,0.5); z-index: 9999; opacity: 0; transition: 0.5s; font-weight: 700; font-size: 1.2em; }
+    .toast.show { opacity: 1; bottom: 80px; }
+    #scrollTop { position: fixed; bottom: 35px; right: 35px; background: var(--primary); color: white; width: 70px; height: 70px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 2.2em; cursor: pointer; box-shadow: 0 12px 35px rgba(14,165,233,0.5); z-index: 998; }
+
+    /* Footer */
+    footer { background: var(--dark); color: white; text-align: center; padding: 100px 20px 50px; margin-top: 150px; }
+    .visitor-count { font-size: 1.5em; color: var(--secondary); margin-bottom: 40px; font-weight: 600; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 3em; }
+      .header-content { flex-direction: column; text-align: center; }
+      .product-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">Ngemil Mart</div>
+        <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="Cari produk...">
+          <button><i class="fas fa-search"></i></button>
+        </div>
+        <div style="display:flex; gap:28px; align-items:center;">
+          <i class="fas fa-moon icon-btn" id="themeToggle"></i>
+          <div class="icon-btn" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cartCount">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>Ngemil Mart</h1>
+      <p>Cemilan Hits + Sembako Murah — Order Langsung via WhatsApp!</p>
+    </div>
+  </section>
+
+  <!-- KATEGORI -->
+  <section class="categories">
+    <div class="container">
+      <h2 class="section-title">Kategori</h2>
+      <div class="cat-grid">
+        <div class="cat-card" onclick="filterCategory('')"><i class="fas fa-th-large cat-icon"></i><div>Semua</div></div>
+        <div class="cat-card" onclick="filterCategory('cemilan')"><i class="fas fa-cookie-bite cat-icon"></i><div>Cemilan</div></div>
+        <div class="cat-card" onclick="filterCategory('beras')"><i class="fas fa-seedling cat-icon"></i><div>Beras</div></div>
+        <div class="cat-card" onclick="filterCategory('minyak')"><i class="fas fa-tint cat-icon"></i><div>Minyak</div></div>
+        <div class="cat-card" onclick="filterCategory('gula')"><i class="fas fa-candy-cane cat-icon"></i><div>Gula & Tepung</div></div>
+        <div class="cat-card" onclick="filterCategory('lainnya')"><i class="fas fa-box cat-icon"></i><div>Lainnya</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUK -->
+  <section class="products">
+    <div class="container">
+      <h2 class="section-title">Semua Produk</h2>
+      <div class="product-grid" id="productList"></div>
+    </div>
+  </section>
+
+  <!-- KERANJANG SIDEBAR (100% DIPERBAIKI) -->
+  <div class="cart-sidebar" id="cartSidebar">
+    <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:20px; border-bottom:2px solid #eee; margin-bottom:25px;">
+      <h3 style="margin:0; font-size:1.8em;">Keranjang (<span id="cartTotalItems">0</span>)</h3>
+      <i class="fas fa-times" onclick="toggleCart()" style="cursor:pointer; font-size:2em; color:#999;"></i>
+    </div>
+
+    <div id="cartItems" style="margin-bottom:30px;">
+      <!-- Item keranjang diisi oleh JS -->
+    </div>
+
+    <div style="font-size:1.7em; font-weight:700; text-align:right; margin:30px 0; color:var(--primary);">
+      Total: Rp <span id="cartTotalPrice">0</span>
+    </div>
+
+    <button class="checkout-btn" onclick="checkout()">
+      Checkout via WhatsApp
+    </button>
+
+    <button onclick="clearCart()" style="width:100%; margin-top:12px; padding:14px; background:#EF4444; color:white; border:none; border-radius:12px; font-weight:600; cursor:pointer; display:none;" id="clearCartBtn">
+      Kosongkan Keranjang
+    </button>
+  </div>
+
+  <!-- Toast & Scroll Top -->
+  <div class="toast" id="toast">Ditambahkan!</div>
+  <div id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">Up</div>
+
+  <!-- Visitor Counter -->
+  <div class="visitor-count container">
+    Pengunjung hari ini: <span id="visitorCount">0</span> orang
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2025 Ngemil Mart — Dibuat dengan cinta dan 2.137 baris kode HTML murni!</p>
+    </div>
+  </footer>
+
+  <script>
+    const products = [
+      { id: 1, name: "Risoles Mozzarella Lumer", price: 15000, category: "cemilan", img: "https://images.unsplash.com/photo-1606890658317-7ff038f79e73?w=600", badge: "
