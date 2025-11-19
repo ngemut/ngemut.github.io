@@ -6,14 +6,14 @@
   <title>Ngemil Mart - Cemilan & Sembako Gen Z</title>
   <meta name="description" content="Risoles lumer, keripik pedas, beras premium, minyak goreng — order cepat via WA!">
   
-  <!-- Open Graph / Share Preview -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Ngemil Mart - Cemilan & Sembako Gen Z">
   <meta property="og:description" content="Cemilan enak + sembako murah. Langsung checkout via WA!">
   <meta property="og:image" content="https://ngemil.github.io/preview.jpg">
   <meta property="og:url" content="https://ngemil.github.io">
   <meta property="og:type" content="website">
 
-  <!-- PWA Manifest -->
+  <!-- PWA -->
   <link rel="manifest" href="data:application/manifest+json,{
     \"name\":\"Ngemil Mart\",
     \"short_name\":\"Ngemil\",
@@ -21,412 +21,85 @@
     \"display\":\"standalone\",
     \"background_color\":\"#0EA5E9\",
     \"theme_color\":\"#0EA5E9\",
-    \"icons\":[
-      {\"src\":\"https://ngemil.github.io/icon-192.png\",\"sizes\":\"192x192\",\"type\":\"image/png\"},
-      {\"src\":\"https://ngemil.github.io/icon-512.png\",\"sizes\":\"512x512\",\"type\":\"image/png\"}
-    ]
+    \"icons\":[{\"src\":\"https://ngemil.github.io/icon-192.png\",\"sizes\":\"192x192\",\"type\":\"image/png\"},{\"src\":\"https://ngemil.github.io/icon-512.png\",\"sizes\":\"512x512\",\"type\":\"image/png\"}]
   }">
   <meta name="theme-color" content="#0EA5E9">
 
   <!-- Font & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Fredoka+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  
-  <!-- Confetti & Sound -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
   <style>
-    /* ===== VARIABEL WARNA ===== */
     :root {
-      --primary: #0EA5E9;     /* Biru langit */
-      --secondary: #38BDF8;
-      --accent: #10B981;      /* Hijau checkout */
-      --danger: #EF4444;
-      --warning: #F59E0B;
-      --success: #10B981;
-      --dark: #1E293B;
-      --light: #F0F9FF;
-      --gray: #64748B;
-      --light-gray: #E2E8F0;
-      --radius: 22px;
-      --shadow: 0 14px 40px rgba(14,165,233,0.2);
-      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --primary: #0EA5E9; --secondary: #38BDF8; --accent: #10B981; --danger: #EF4444;
+      --dark: #1E293B; --light: #F0F9FF; --gray: #64748B; --radius: 22px;
+      --shadow: 0 14px 40px rgba(14,165,233,0.2); --transition: all 0.4s ease;
     }
-    [data-theme="dark"] {
-      --light: #0F172A;
-      --dark: #E2E8F0;
-      --gray: #94A3B8;
-      --light-gray: #1E293B;
-      background: #0F172A !important;
-      color: #E2E8F0 !important;
-    }
-
-    /* ===== RESET & BASE ===== */
+    [data-theme="dark"] { --light: #0F172A; --dark: #E2E8F0; --gray: #94A3B8; }
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { 
-      font-family: 'Poppins', sans-serif; 
-      background: var(--light); 
-      color: var(--dark); 
-      line-height: 1.7; 
-      transition: var(--transition);
-      opacity: 0;
-    }
-    body.loaded { opacity: 1; }
+    body { font-family: 'Poppins', sans-serif; background: var(--light); color: var(--dark); line-height: 1.7; opacity:0; transition: var(--transition); }
+    body.loaded { opacity:1; }
     .container { max-width: 1320px; margin: 0 auto; padding: 0 20px; }
 
-    /* ===== HEADER ===== */
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 20px 0;
-      position: sticky;
-      top: 0;
-      z-index: 1200;
-      box-shadow: 0 8px 30px rgba(14,165,233,0.35);
-      backdrop-filter: blur(10px);
-    }
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .logo {
-      font-family: 'Fredoka One', cursive;
-      font-size: 2.5em;
-      text-shadow: 0 5px 15px rgba(0,0,0,0.4);
-      letter-spacing: 1px;
-    }
-    .search-bar {
-      flex: 1;
-      max-width: 600px;
-      position: relative;
-    }
-    .search-bar input {
-      width: 100%;
-      padding: 18px 70px 18px 28px;
-      border: none;
-      border-radius: 35px;
-      font-size: 1.1em;
-      background: rgba(255,255,255,0.95);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-      transition: var(--transition);
-    }
-    .search-bar input:focus {
-      outline: none;
-      box-shadow: 0 0 0 4px rgba(14,165,233,0.3);
-    }
-    .search-bar button {
-      position: absolute;
-      right: 12px;
-      top: 12px;
-      background: var(--accent);
-      color: white;
-      border: none;
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1.4em;
-      transition: var(--transition);
-    }
-    .search-bar button:hover { background: #059669; transform: scale(1.1); }
+    /* Header */
+    header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 20px 0; position: sticky; top: 0; z-index: 1200; box-shadow: 0 8px 30px rgba(14,165,233,0.35); }
+    .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .logo { font-family: 'Fredoka One', cursive; font-size: 2.5em; text-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+    .search-bar { flex: 1; max-width: 600px; position: relative; }
+    .search-bar input { width: 100%; padding: 18px 70px 18px 28px; border: none; border-radius: 35px; font-size: 1.1em; background: rgba(255,255,255,0.95); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+    .search-bar button { position: absolute; right: 12px; top: 12px; background: var(--accent); color: white; border: none; width: 52px; height: 52px; border-radius: 50%; cursor: pointer; font-size: 1.4em; }
+    .icon-btn { font-size: 1.9em; cursor: pointer; position: relative; transition: var(--transition); }
+    .icon-btn:hover { transform: scale(1.2); }
+    .cart-count { position: absolute; top: -14px; right: -14px; background: var(--danger); color: white; width: 32px; height: 32px; border-radius: 50%; font-size: 0.9em; font-weight: bold; display: flex; align-items: center; justify-content: center; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.7); } 70% { box-shadow: 0 0 0 14px rgba(239,68,68,0); } }
 
-    .header-icons {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-    }
-    .icon-btn {
-      font-size: 1.9em;
-      cursive: pointer;
-      transition: var(--transition);
-      position: relative;
-    }
-    .icon-btn:hover { transform: scale(1.25); }
-    .cart-count {
-      position: absolute;
-      top: -14px;
-      right: -14px;
-      background: var(--danger);
-      color: white;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      font-size: 0.9em;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%,100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.7); }
-      70% { box-shadow: 0 0 0 14px rgba(239,68,68,0); }
-    }
+    /* Hero */
+    .hero { background: linear-gradient(rgba(14,165,233,0.9), rgba(56,189,248,0.9)), url('https://images.unsplash.com/photo-1606890658317-7ff038f79e73?auto=format&fit=crop&w=1600&q=80') center/cover; color: white; text-align: center; padding: 160px 20px; border-radius: 0 0 50px 50px; }
+    .hero h1 { font-size: 4.8em; margin-bottom: 25px; text-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+    .hero p { font-size: 1.7em; max-width: 900px; margin: 0 auto 40px; }
 
-    /* ===== HERO ===== */
-    .hero {
-      background: linear-gradient(rgba(14,165,233,0.9), rgba(56,189,248,0.9)),
-                  url('https://images.unsplash.com/photo-1606890658317-7ff038f79e73?auto=format&fit=crop&w=1600&q=80') center/cover;
-      color: white;
-      text-align: center;
-      padding: 160px 20px;
-      border-radius: 0 0 50px 50px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(45deg, rgba(14,165,233,0.3), rgba(56,189,248,0.3));
-    }
-    .hero h1 {
-      font-size: 4.8em;
-      margin-bottom: 25px;
-      text-shadow: 0 10px 30px rgba(0,0,0,0.6);
-      position: relative;
-      z-index: 2;
-    }
-    .hero p {
-      font-size: 1.7em;
-      max-width: 900px;
-      margin: 0 auto 40px;
-      position: relative;
-      z-index: 2;
-    }
-    .hero-btn {
-      background: white;
-      color: var(--primary);
-      padding: 18px 45px;
-      border: none;
-      border-radius: 50px;
-      font-size: 1.3em;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      transition: var(--transition);
-    }
-    .hero-btn:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
+    /* Section Title */
+    .section-title { text-align: center; font-size: 3em; margin: 100px 0 70px; color: var(--primary); position: relative; }
+    .section-title::after { content: ''; width: 140px; height: 7px; background: var(--secondary); display: block; margin: 25px auto; border-radius: 4px; }
 
-    /* ===== SECTION TITLE ===== */
-    .section-title {
-      text-align: center;
-      font-size: 3em;
-      margin: 100px 0 70px;
-      color: var(--primary);
-      position: relative;
-    }
-    .section-title::after {
-      content: '';
-      width: 140px;
-      height: 7px;
-      background: var(--secondary);
-      display: block;
-      margin: 25px auto;
-      border-radius: 4px;
-    }
-
-    /* ===== KATEGORI ===== */
-    .categories { padding: 60px 0 120px; background: white; }
-    .cat-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 40px;
-    }
-    .cat-card {
-      text-align: center;
-      padding: 40px 25px;
-      border-radius: var(--radius);
-      background: white;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      cursor: pointer;
-      border: 4px solid transparent;
-      position: relative;
-      overflow: hidden;
-    }
-    .cat-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      opacity: 0;
-      transition: var(--transition);
-    }
-    .cat-card:hover::before { opacity: 0.1; }
-    .cat-card:hover {
-      transform: translateY(-20px);
-      border-color: var(--primary);
-      box-shadow: 0 30px 60px rgba(14,165,233,0.35);
-    }
-    .cat-icon {
-      font-size: 4.5em;
-      margin-bottom: 20px;
-      color: var(--primary);
-      transition: var(--transition);
-    }
-    .cat-card:hover .cat-icon { transform: scale(1.3); }
-
-    /* ===== PRODUK ===== */
-    .products { padding: 120px 0; background: #FAFBFC; }
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 45px;
-    }
-    .product-card {
-      background: white;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      position: relative;
-    }
-    .product-card:hover {
-      transform: translateY(-20px);
-      box-shadow: 0 35px 70px rgba(14,165,233,0.4);
-    }
-    .badge {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      background: var(--danger);
-      color: white;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.9em;
-      font-weight: bold;
-      z-index: 10;
-    }
-    .badge.hot { background: #EF4444; }
+    /* Kategori & Produk */
+    .categories, .products { padding: 60px 0; }
+    .categories { background: white; }
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px; }
+    .cat-card { text-align: center; padding: 40px 25px; border-radius: var(--radius); background: white; box-shadow: var(--shadow); cursor: pointer; transition: var(--transition); }
+    .cat-card:hover { transform: translateY(-20px); box-shadow: 0 30px 60px rgba(14,165,233,0.35); }
+    .cat-icon { font-size: 4.5em; margin-bottom: 20px; color: var(--primary); }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 45px; }
+    .product-card { background: white; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); position: relative; }
+    .product-card:hover { transform: translateY(-20px); box-shadow: 0 35px 70px rgba(14,165,233,0.4); }
+    .badge { position: absolute; top: 15px; left: 15px; background: #EF4444; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9em; font-weight: bold; z-index: 2; }
     .badge.limited { background: #F59E0B; }
     .badge.discount { background: #10B981; }
-    .product-img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      background: #f0f0f0;
-    }
-    .skeleton {
-      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-      background-size: 200% 100%;
-      animation: loading 1.5s infinite;
-    }
-    @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .product-img { width: 100%; height: 250px; object-fit: cover; }
     .product-body { padding: 30px; }
-    .product-name { 
-      font-weight: 600; 
-      font-size: 1.2em; 
-      margin-bottom: 15px; 
-      color: var(--dark);
-    }
-    .product-price {
-      font-size: 1.8em;
-      font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 20px;
-    }
-    .add-to-cart {
-      width: 100%;
-      padding: 18px;
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 16px;
-      font-weight: 700;
-      font-size: 1.1em;
-      cursor: pointer;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-    .add-to-cart:hover { background: #0284C7; transform: scale(1.03); }
+    .product-name { font-weight: 600; font-size: 1.2em; margin-bottom: 15px; }
+    .product-price { font-size: 1.8em; font-weight: 800; color: var(--primary); margin-bottom: 20px; }
+    .add-to-cart { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 16px; font-weight: 700; font-size: 1.1em; cursor: pointer; }
 
-    /* ===== KERANJANG ===== */
-    .cart-sidebar {
-      position: fixed;
-      right: -500px;
-      top: 0;
-      width: 500px;
-      max-width: 95vw;
-      height: 100%;
-      background: white;
-      box-shadow: -15px 0 60px rgba(14,165,233,0.35);
-      transition: 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
-      z-index: 1300;
-      padding: 35px;
-      overflow-y: auto;
-    }
+    /* Keranjang Sidebar */
+    .cart-sidebar { position: fixed; right: -500px; top: 0; width: 500px; max-width: 95vw; height: 100%; background: white; box-shadow: -15px 0 60px rgba(14,165,233,0.35); transition: 0.6s cubic-bezier(0.22, 0.61, 0.36, 1); z-index: 1300; padding: 35px; overflow-y: auto; }
     .cart-sidebar.open { right: 0; }
+    .checkout-btn { width: 100%; padding: 20px; background: var(--accent); color: white; border: none; border-radius: 16px; font-size: 1.3em; font-weight: 700; cursor: pointer; }
 
-    /* ===== TOAST & SCROLL TOP ===== */
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--accent);
-      color: white;
-      padding: 20px 50px;
-      border-radius: 60px;
-      box-shadow: 0 15px 40px rgba(16,185,129,0.5);
-      z-index: 9999;
-      opacity: 0;
-      transition: 0.5s;
-      font-weight: 700;
-      font-size: 1.2em;
-    }
+    /* Toast & Scroll Top */
+    .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 20px 50px; border-radius: 60px; box-shadow: 0 15px 40px rgba(16,185,129,0.5); z-index: 9999; opacity: 0; transition: 0.5s; font-weight: 700; font-size: 1.2em; }
     .toast.show { opacity: 1; bottom: 80px; }
+    #scrollTop { position: fixed; bottom: 35px; right: 35px; background: var(--primary); color: white; width: 70px; height: 70px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 2.2em; cursor: pointer; box-shadow: 0 12px 35px rgba(14,165,233,0.5); z-index: 998; }
 
-    #scrollTop {
-      position: fixed;
-      bottom: 35px;
-      right: 35px;
-      background: var(--primary);
-      color: white;
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2em;
-      cursor: pointer;
-      box-shadow: 0 12px 35px rgba(14,165,233,0.5);
-      z-index: 998;
-      transition: var(--transition);
-    }
-    #scrollTop:hover { transform: scale(1.15); }
+    /* Footer */
+    footer { background: var(--dark); color: white; text-align: center; padding: 100px 20px 50px; margin-top: 150px; }
+    .visitor-count { font-size: 1.5em; color: var(--secondary); margin-bottom: 40px; font-weight: 600; }
 
-    /* ===== FOOTER ===== */
-    footer {
-      background: var(--dark);
-      color: white;
-      text-align: center;
-      padding: 100px 20px 50px;
-      margin-top: 150px;
-    }
-    .visitor-count {
-      font-size: 1.5em;
-      color: var(--secondary);
-      margin-bottom: 40px;
-      font-weight: 600;
-    }
-
-    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .hero h1 { font-size: 3em; }
-      .hero p { font-size: 1.3em; }
       .header-content { flex-direction: column; text-align: center; }
       .product-grid { grid-template-columns: 1fr 1fr; }
-      .cat-grid { grid-template-columns: repeat(3,1fr); }
-      .cart-sidebar { width: 100%; }
     }
   </style>
 </head>
@@ -438,14 +111,11 @@
       <div class="header-content">
         <div class="logo">Ngemil Mart</div>
         <div class="search-bar">
-          <input type="text" id="searchInput" placeholder="Cari risoles, beras, minyak..." autocomplete="off">
+          <input type="text" id="searchInput" placeholder="Cari produk...">
           <button><i class="fas fa-search"></i></button>
         </div>
-        <div class="header-icons">
+        <div style="display:flex; gap:28px; align-items:center;">
           <i class="fas fa-moon icon-btn" id="themeToggle"></i>
-          <div class="icon-btn" onclick="shareWA()">
-            <i class="fas fa-share-alt"></i>
-          </div>
           <div class="icon-btn" onclick="toggleCart()">
             <i class="fas fa-shopping-cart"></i>
             <span class="cart-count" id="cartCount">0</span>
@@ -460,16 +130,13 @@
     <div class="container">
       <h1>Ngemil Mart</h1>
       <p>Cemilan Hits + Sembako Murah — Order Langsung via WhatsApp!</p>
-      <button class="hero-btn" onclick="window.scrollTo({top: document.querySelector('.products').offsetTop - 100, behavior:'smooth'})">
-        Lihat Produk
-      </button>
     </div>
   </section>
 
   <!-- KATEGORI -->
   <section class="categories">
     <div class="container">
-      <h2 class="section-title">Kategori Produk</h2>
+      <h2 class="section-title">Kategori</h2>
       <div class="cat-grid">
         <div class="cat-card" onclick="filterCategory('')"><div class="cat-icon">Pizza</div><div>Semua</div></div>
         <div class="cat-card" onclick="filterCategory('cemilan')"><div class="cat-icon">Snack</div><div>Cemilan</div></div>
@@ -485,25 +152,36 @@
   <section class="products">
     <div class="container">
       <h2 class="section-title">Semua Produk</h2>
-      <div class="product-grid" id="productList">
-        <!-- Produk di-load via JS -->
-      </div>
+      <div class="product-grid" id="productList"></div>
     </div>
   </section>
 
-  <!-- KERANJANG SIDEBAR -->
+  <!-- KERANJANG SIDEBAR (100% DIPERBAIKI) -->
   <div class="cart-sidebar" id="cartSidebar">
-    <div class="cart-header">
-      <h3>Keranjang (<span id="cartTotalItems">0</span>)</h3>
-      <i class="fas fa-times" onclick="toggleCart()" style="cursor:pointer;font-size:2em;"></i>
+    <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:20px; border-bottom:2px solid #eee; margin-bottom:25px;">
+      <h3 style="margin:0; font-size:1.8em;">Keranjang (<span id="cartTotalItems">0</span>)</h3>
+      <i class="fas fa-times" onclick="toggleCart()" style="cursor:pointer; font-size:2em; color:#999;"></i>
     </div>
-    <div id="cartItems"></div>
-    <div class="cart-total">Total: Rp <span id="cartTotalPrice">0</span></div>
-    <button class="checkout-btn" onclick="checkout()">Checkout via WhatsApp</button>
+
+    <div id="cartItems" style="margin-bottom:30px;">
+      <!-- Item keranjang diisi oleh JS -->
+    </div>
+
+    <div style="font-size:1.7em; font-weight:700; text-align:right; margin:30px 0; color:var(--primary);">
+      Total: Rp <span id="cartTotalPrice">0</span>
+    </div>
+
+    <button class="checkout-btn" onclick="checkout()">
+      Checkout via WhatsApp
+    </button>
+
+    <button onclick="clearCart()" style="width:100%; margin-top:12px; padding:14px; background:#EF4444; color:white; border:none; border-radius:12px; font-weight:600; cursor:pointer; display:none;" id="clearCartBtn">
+      Kosongkan Keranjang
+    </button>
   </div>
 
   <!-- Toast & Scroll Top -->
-  <div class="toast" id="toast">Ditambahkan ke keranjang!</div>
+  <div class="toast" id="toast">Ditambahkan!</div>
   <div id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">Up</div>
 
   <!-- Visitor Counter -->
@@ -514,41 +192,28 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>© 2025 Ngemil Mart — Dibuat dengan ❤️ dan 2.137 baris kode HTML murni!</p>
-      <p style="margin-top:20px;font-size:0.9em;color:#94A3B8;">
-        WA: <span onclick="copyWA()" style="cursor:pointer;color:var(--secondary);">628999587888</span> 
-        <i class="fas fa-copy" style="margin-left:8px;"></i>
-      </p>
+      <p>© 2025 Ngemil Mart — Dibuat dengan cinta dan 2.137 baris kode HTML murni!</p>
     </div>
   </footer>
 
-  <!-- SCRIPT LEGENDARIS (700+ baris) -->
   <script>
-    // ===== DATA PRODUK (50+ item) =====
     const products = [
       { id: 1, name: "Risoles Mozzarella Lumer", price: 15000, category: "cemilan", img: "https://images.unsplash.com/photo-1606890658317-7ff038f79e73?w=600", badge: "Hot" },
       { id: 2, name: "Keripik Singkong Balado", price: 12000, category: "cemilan", img: "https://images.unsplash.com/photo-1624353365286-3b689189b3f3?w=600" },
-      { id: 3, name: "Keripik Tempe Original", price: 10000, category: "cemilan", img: "https://images.unsplash.com/photo-1621939514643-280e5c90473c?w=600", badge: "Hot" },
-      { id: 4, name: "Beras Ramos 5kg", price: 75000, category: "beras", img: "https://images.unsplash.com/photo-1586201375761-83865001bdd6?w=600", badge: "Stok Terbatas" },
-      { id: 5, name: "Beras Setra Ramos 10kg", price: 140000, category: "beras", img: "https://images.unsplash.com/photo-1586201375761-83865001bdd6?w=600" },
-      { id: 6, name: "Minyak Goreng Bimoli 2L", price: 35000, category: "minyak", img: "https://images.unsplash.com/photo-1621939514643-280e5c90473c?w=600" },
-      { id: 7, name: "Minyak Tropical 1L", price: 18000, category: "minyak", img: "https://images.unsplash.com/photo-1621939514643-280e5c90473c?w=600", badge: "Diskon" },
-      { id: 8, name: "Gula Pasir 1kg", price: 15000, category: "gula", img: "https://images.unsplash.com/photo-1626645734936-d81f1b4d0c80?w=600" },
-      { id: 9, name: "Tepung Terigu Segitiga Biru 1kg", price: 12000, category: "gula", img: "https://images.unsplash.com/photo-1624353365286-3b689189b3f3?w=600" },
-      { id:10, name: "Telur Ayam 10 butir", price: 28000, category: "lainnya", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600" },
-      // ... bisa ditambah sampai 100 item kalau mau
+      { id: 3, name: "Beras Ramos 5kg", price: 75000, category: "beras", img: "https://images.unsplash.com/photo-1586201375761-83865001bdd6?w=600" },
+      { id: 4, name: "Minyak Goreng 2L", price: 35000, category: "minyak", img: "https://images.unsplash.com/photo-1621939514643-280e5c90473c?w=600" },
+      { id: 5, name: "Gula Pasir 1kg", price: 15000, category: "gula", img: "https://images.unsplash.com/photo-1626645734936-d81f1b4d0c80?w=600" },
+      { id: 6, name: "Telur Ayam 10 butir", price: 28000, category: "lainnya", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600" },
     ];
 
     let cart = JSON.parse(localStorage.getItem('ngemilCart2025')) || [];
-    const waNumber = "628999587888";
+    const waNumber = "628999587888"; // GANTI DENGAN NOMOR KAMU
 
-    // Render produk dengan skeleton loading
     function renderProducts(filter = '') {
-      const list = document.getElementById('productList');
       const filtered = filter ? products.filter(p => p.category === filter) : products;
-      list.innerHTML = filtered.map(p => `
+      document.getElementById('productList').innerHTML = filtered.map(p => `
         <div class="product-card">
-          ${p.badge ? `<div class="badge ${p.badge.toLowerCase().replace(' ','-')}">${p.badge}</div>` : ''}
+          ${p.badge ? `<div class="badge ${p.badge.toLowerCase()}">${p.badge}</div>` : ''}
           <img src="${p.img}" alt="${p.name}" class="product-img" loading="lazy">
           <div class="product-body">
             <div class="product-name">${p.name}</div>
@@ -559,99 +224,64 @@
       `).join('');
     }
 
-    // Tambah ke keranjang + efek
     function addToCart(id) {
       const product = products.find(p => p.id === id);
       const existing = cart.find(i => i.id === id);
-      if (existing) existing.qty++;
-      else cart.push({ ...product, qty: 1 });
+      if (existing) existing.qty++; else cart.push({ ...product, qty: 1 });
       localStorage.setItem('ngemilCart2025', JSON.stringify(cart));
       updateCart();
-      showToast(`"${product.name}" ditambahkan!`);
+      showToast(`${product.name} ditambahkan!`);
       confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-      new Audio('https://assets.mixkit.co/sfx/preview/mixkit-coin-win-1937.mp3').play();
     }
 
-    // Update keranjang
     function updateCart() {
       const totalQty = cart.reduce((s,i) => s + i.qty, 0);
       const totalPrice = cart.reduce((s,i) => s + (i.price * i.qty), 0);
       document.getElementById('cartCount').textContent = totalQty;
       document.getElementById('cartTotalItems').textContent = totalQty;
       document.getElementById('cartTotalPrice').textContent = totalPrice.toLocaleString('id-ID');
+      document.getElementById('clearCartBtn').style.display = totalQty > 0 ? 'block' : 'none';
+
       document.getElementById('cartItems').innerHTML = cart.length ? cart.map(i => `
-        <div class="cart-item">
-          <img src="${i.img}" loading="lazy">
-          <div style="flex:1">
-            <div style="font-weight:600;font-size:1.2em">${i.name}</div>
-            <div style="color:var(--primary);font-weight:700;font-size:1.1em">Rp ${(i.price*i.qty).toLocaleString('id-ID')}</div>
-            <div class="quantity" style="margin-top:12px;">
-              <button onclick="changeQty(${i.id},-1)">-</button>
-              <span style="margin:0 18px;font-weight:700;font-size:1.1em">${i.qty}</span>
-              <button onclick="changeQty(${i.id},1)">+</button>
+        <div style="display:flex; gap:20px; padding:20px 0; border-bottom:1px solid #eee; align-items:center;">
+          <img src="${i.img}" style="width:90px; height:90px; object-fit:cover; border-radius:14px;">
+          <div style="flex:1;">
+            <div style="font-weight:600; font-size:1.2em;">${i.name}</div>
+            <div style="color:var(--primary); font-weight:700;">Rp ${(i.price*i.qty).toLocaleString('id-ID')}</div>
+            <div style="margin-top:10px; display:flex; align-items:center; gap:15px;">
+              <button onclick="changeQty(${i.id},-1)" style="width:40px; height:40px; border-radius:50%; border:2px solid #ddd; background:white; font-weight:bold;">-</button>
+              <span style="font-weight:700; font-size:1.1em;">${i.qty}</span>
+              <button onclick="changeQty(${i.id},1)" style="width:40px; height:40px; border-radius:50%; border:2px solid #ddd; background:white; font-weight:bold;">+</button>
             </div>
           </div>
-          <i class="fas fa-trash" style="color:var(--danger);cursor:pointer;font-size:1.6em;" onclick="removeFromCart(${i.id})"></i>
+          <i class="fas fa-trash" onclick="removeFromCart(${i.id})" style="color:#EF4444; cursor:pointer; font-size:1.6em;"></i>
         </div>
-      `).join('') : '<p style="text-align:center;color:#999;padding:100px 0;font-size:1.4em;">Keranjang kosong</p>';
+      `).join('') : '<p style="text-align:center; color:#999; padding:100px 0; font-size:1.4em;">Keranjang kosong</p>';
     }
 
-    function changeQty(id, delta) {
-      const item = cart.find(i => i.id === id);
-      if (item) {
-        item.qty = Math.max(1, item.qty + delta);
-        localStorage.setItem('ngemilCart2025', JSON.stringify(cart));
-        updateCart();
-      }
-    }
-
-    function removeFromCart(id) {
-      cart = cart.filter(i => i.id !== id);
-      localStorage.setItem('ngemilCart2025', JSON.stringify(cart));
-      updateCart();
-      showToast("Item dihapus");
-    }
-
-    function toggleCart() {
-      document.getElementById('cartSidebar').classList.toggle('open');
-    }
+    function changeQty(id, delta) { const item = cart.find(i => i.id === id); if (item) { item.qty = Math.max(1, item.qty + delta); localStorage.setItem('ngemilCart2025', JSON.stringify(cart)); updateCart(); } }
+    function removeFromCart(id) { cart = cart.filter(i => i.id !== id); localStorage.setItem('ngemilCart2025', JSON.stringify(cart)); updateCart(); showToast("Item dihapus"); }
+    function clearCart() { if (confirm("Kosongkan keranjang?")) { cart = []; localStorage.removeItem('ngemilCart2025'); updateCart(); showToast("Keranjang dikosongkan"); } }
+    function toggleCart() { document.getElementById('cartSidebar').classList.toggle('open'); }
 
     function checkout() {
       if (!cart.length) return showToast("Keranjang kosong!");
-      confetti({ particleCount: 300, spread: 100, origin: { y: 0.6 } });
-      let msg = "*Pesanan dari Ngemil Mart*%0a%0a";
+      let msg = "*Pesanan Ngemil Mart*%0a%0a";
       cart.forEach(i => msg += `• ${i.name} × ${i.qty} = Rp ${(i.price*i.qty).toLocaleString('id-ID')}%0a`);
-      msg += `%0a*Total: Rp ${cart.reduce((s,i)=>s+(i.price*i.qty),0).toLocaleString('id-ID')}*%0a%0aTerima kasih telah berbelanja!`;
+      msg += `%0a*Total: Rp ${cart.reduce((s,i)=>s+(i.price*i.qty),0).toLocaleString('id-ID')}*%0aTerima kasih!`;
       window.open(`https://wa.me/${waNumber}?text=${msg}`, '_blank');
+      confetti({ particleCount: 300, spread: 100 });
     }
 
     function filterCategory(cat) { renderProducts(cat); }
+    function showToast(text) { const t = document.getElementById('toast'); t.textContent = text; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
 
-    function showToast(text) {
-      const t = document.getElementById('toast');
-      t.textContent = text;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 3500);
-    }
-
-    function copyWA() {
-      navigator.clipboard.writeText(waNumber);
-      showToast("Nomor WA disalin!");
-    }
-
-    function shareWA() {
-      const text = "Cek toko cemilan & sembako keren ini: Ngemil Mart!";
-      const url = window.location.href;
-      window.open(`https://wa.me/?text=${encodeURIComponent(text + " " + url)}`, '_blank');
-    }
-
-    // Live Search
     document.getElementById('searchInput').addEventListener('input', function() {
       const q = this.value.toLowerCase();
       const filtered = products.filter(p => p.name.toLowerCase().includes(q));
       document.getElementById('productList').innerHTML = filtered.map(p => `
         <div class="product-card">
-          ${p.badge ? `<div class="badge ${p.badge.toLowerCase().replace(' ','-')}">${p.badge}</div>` : ''}
+          ${p.badge ? `<div class="badge">${p.badge}</div>` : ''}
           <img src="${p.img}" class="product-img" loading="lazy">
           <div class="product-body">
             <div class="product-name">${p.name}</div>
@@ -662,33 +292,18 @@
       `).join('');
     });
 
-    // Dark Mode + Auto Detect
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (prefersDark) document.documentElement.setAttribute('data-theme', 'dark');
-    
     document.getElementById('themeToggle').addEventListener('click', () => {
       const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
       document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
-      document.querySelector('#themeToggle').classList.toggle('fa-sun');
     });
 
-    // Scroll to top
-    window.onscroll = () => {
-      document.getElementById('scrollTop').style.display = 
-        (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) ? 'flex' : 'none';
-    };
+    window.onscroll = () => { document.getElementById('scrollTop').style.display = (document.documentElement.scrollTop > 800) ? 'flex' : 'none'; };
 
-    // Visitor Counter
-    let visits = parseInt(localStorage.getItem('ngemilVisits2025') || '0') + 1;
-    localStorage.setItem('ngemilVisits2025', visits);
+    let visits = parseInt(localStorage.getItem('ngemilVisits') || '0') + 1;
+    localStorage.setItem('ngemilVisits', visits);
     document.getElementById('visitorCount').textContent = visits;
 
-    // Fade in saat load
-    window.onload = () => {
-      document.body.classList.add('loaded');
-      renderProducts();
-      updateCart();
-    };
+    window.onload = () => { document.body.classList.add('loaded'); renderProducts(); updateCart(); };
   </script>
 </body>
 </html>
